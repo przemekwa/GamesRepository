@@ -10,5 +10,6 @@ namespace GamesRepository.Dto
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public int Digital { get; set; }
     }
 }

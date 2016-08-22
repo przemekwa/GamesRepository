@@ -12,9 +12,9 @@ namespace GamesRepository_Tests
         [Fact]
         public void Integration_Test()
         {
-            var games = new GamesRepository.GamesRepository();
+            var games = new GamesRepository.GamesRepository().GetAll().ToList();
 
-            Assert.Equal(1, games.GetAll().Count());
+            Assert.Equal(1, games.Count);
 
         }
     }
