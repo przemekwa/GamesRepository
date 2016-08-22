@@ -11,11 +11,11 @@ namespace GamesRepository
 {
     internal class GamesRepositoryContext : DbContext
     {
-        public DbSet<Game> Games { get; set; }
+        public DbSet<Games> Games { get; set; }
 
-        public GamesRepositoryContext() :base("games")
+        public GamesRepositoryContext() : base("games")
         {
-            
+         
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

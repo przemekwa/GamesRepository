@@ -16,7 +16,7 @@ namespace GamesRepository
             GamesRepositoryContext = new GamesRepositoryContext();
         }
 
-        public IEnumerable<Game> GetAll()
+        public IEnumerable<Games> GetAll()
         {
             return this.GamesRepositoryContext.Games;
         }
