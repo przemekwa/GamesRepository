@@ -1,4 +1,4 @@
-﻿@model GamesExplorer.Models.GameDto
+﻿@model IEnumerable<GamesExplorer.Models.GameModel>
 @{
     ViewBag.Title = "Games";
 }
@@ -6,17 +6,33 @@
 
 <h2>Games</h2>
 
-<table>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>BuyDate</th>
+        <th>Price</th>
+        <th>ActivationServices</th>
+        <th>Shop</th> 
+        <th>Digital</th>
+    </tr>
+    </thead>
+    <tbody>
 
-    @foreach (var m in @Model.Games)
+    @for (int index = 0; index < @Model.ToList().Count; index++)
     {
+        var m = @Model.ToList()[index];
         <tr>
+            <td>@(index +1)</td>
             <td>@m.Title</td>
             <td>@m.BuyDate</td>
-            <td>@m.Price</td>
-            <td>@m.ActivationServices.Name</td>
-            <td>@m.Shop.Name</td>
+            <td>@m.Price.ToString("C")</td>
+            <td>@m.ActivationServices</td>
+            <td>@m.Shop</td>
+            <td>@m.Digital</td>
+
         </tr>
     }
-
+    </tbody>
 </table>

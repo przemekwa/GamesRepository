@@ -1,7 +1,26 @@
-﻿
+﻿@model GamesExplorer.Models.GameModel
+
 @{
     ViewBag.Title = "NewGame";
 }
 
+
 <h2>NewGame</h2>
+
+
+ 
+
+@using (Html.BeginForm("Add", "Game"))
+{
+    <p>Title @Html.EditorFor(m => m.Title)</p>
+    <p>BuyDate @Html.EditorFor(m => m.BuyDate)</p>
+    <p>Price @Html.EditorFor(m => m.Price)</p>
+    <p>ActivationServices @Html.EditorFor(m => m.ActivationServices)</p>
+    <p>Digital @Html.EditorFor(m => m.Digital)</p>
+    <p>Shop @Html.EditorFor(m => m.Shop)</p>
+    <p>Platform @Html.EnumDropDownListFor(m => m.Platform)</p>
+  
+    <input type="submit"  value="Add"/>
+
+}
 

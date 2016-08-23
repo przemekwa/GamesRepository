@@ -21,6 +21,16 @@ namespace GamesRepository
             return this.GamesRepositoryContext.Games;
         }
 
+        public IEnumerable<ActivationServices> GetActivationServices()
+        {
+            return this.GamesRepositoryContext.ActivationServices;
+        }
+
+        public IEnumerable<Shop> GetShops()
+        {
+            return this.GamesRepositoryContext.Shop;
+        }
+
         public void Add(Game game)
         {
             this.GamesRepositoryContext.Games.Add(game);
