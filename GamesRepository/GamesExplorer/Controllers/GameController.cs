@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GamesExplorer.Models;
 
 namespace GamesExplorer.Controllers
 {
@@ -10,7 +11,14 @@ namespace GamesExplorer.Controllers
     {
         public ActionResult Games()
         {
-            return View();
+            var gamesApi = new GamesRepository.GamesRepository();
+
+            var model = new GameDto
+            {
+                Games = gamesApi.GetAll().ToList()
+            };
+
+            return View(model);
         }
     }
 }
