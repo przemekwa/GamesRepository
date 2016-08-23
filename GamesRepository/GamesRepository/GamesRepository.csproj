@@ -63,7 +63,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\ActivationServices.cs" />
     <Compile Include="Dto\Game.cs" />
+    <Compile Include="Dto\Shop.cs" />
     <Compile Include="GamesRepository.cs" />
     <Compile Include="GamesRepositoryContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

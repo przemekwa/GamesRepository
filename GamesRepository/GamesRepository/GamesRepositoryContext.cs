@@ -11,7 +11,7 @@ namespace GamesRepository
 {
     internal class GamesRepositoryContext : DbContext
     {
-        public DbSet<Games> Games { get; set; }
+        public DbSet<Game> Games { get; set; }
 
         public GamesRepositoryContext() : base("games")
         {
