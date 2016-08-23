@@ -6,4 +6,17 @@
 
 <h2>Games</h2>
 
-<h3>@Model.Games.Count()</h3>
+<table>
+
+    @foreach (var m in @Model.Games)
+    {
+        <tr>
+            <td>@m.Title</td>
+            <td>@m.BuyDate</td>
+            <td>@m.Price</td>
+            <td>@m.ActivationServices.Name</td>
+            <td>@m.Shop.Name</td>
+        </tr>
+    }
+
+</table>
