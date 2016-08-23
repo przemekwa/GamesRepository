@@ -20,5 +20,10 @@ namespace GamesExplorer.Controllers
 
             return View(model);
         }
+
+        public ActionResult NewGame()
+        {
+            return View();
+        }
     }
 }

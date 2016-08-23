@@ -18,6 +18,12 @@ namespace GamesExplorer
                 url: "",
                 defaults: new { controller = "Game", action = "Games", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Root",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Game", action = "Games", id = UrlParameter.Optional }
+            );
         }
     }
 }
