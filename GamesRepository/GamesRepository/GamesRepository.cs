@@ -20,5 +20,20 @@ namespace GamesRepository
         {
             return this.GamesRepositoryContext.Games;
         }
+
+        public void Add(Game game)
+        {
+            this.GamesRepositoryContext.Games.Add(game);
+
+            this.GamesRepositoryContext.SaveChanges();
+        }
+
+        public void Remove(Game game)
+        {
+            this.GamesRepositoryContext.Games.Remove(game);
+
+            this.GamesRepositoryContext.SaveChanges();
+        }
+
     }
 }

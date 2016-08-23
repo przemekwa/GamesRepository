@@ -12,6 +12,7 @@ namespace GamesRepository.Dto
     public class ActivationServices
     {
         [Key]
+
         public int Id { get; set; }
 
         public string Name { get; set; }

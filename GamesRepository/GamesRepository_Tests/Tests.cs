@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GamesRepository.Dto;
 using Xunit;
 
 namespace GamesRepository_Tests
@@ -39,6 +40,45 @@ namespace GamesRepository_Tests
             Assert.Equal("muve.pl", game.Shop.Name);
 
             Assert.Equal("przemekworld@gmail.com", game.Shop.UserName);
+        }
+
+
+        [Fact]
+        public void Add_And_Remove_Test()
+        {
+            var gameRepository = new GamesRepository.GamesRepository();
+
+            var game = new Game
+            {
+                Title = "sdsf",
+                BuyDate = DateTime.Now,
+                Price = 0,
+                ShopId = 0,
+                //Shop = new Shop
+                //{
+                //    Id = 1,
+                //    Name = "ssf",
+                //    UserName = "sds"
+                //},
+                Digital = 1,
+                ActivationServiceId = 0,
+                //ActivationServices = new ActivationServices
+                //{
+                //    Id = 1,
+                //    Name = "ssf",
+                //    UserName = "sds"
+                //},
+                Platform = "PC"
+            };
+
+            gameRepository.Add(game);
+
+            Assert.Equal(2, gameRepository.GetAll().Count());
+
+            gameRepository.Remove(game);
+
+            Assert.Equal(1, gameRepository.GetAll().Count());
+
         }
     }
 }

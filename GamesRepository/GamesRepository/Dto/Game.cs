@@ -12,6 +12,7 @@ namespace GamesRepository.Dto
     public class Game
     {
         [Key]
+        [Column("id")]
         public int Id { get; set; }
 
         public string Title { get; set; }
