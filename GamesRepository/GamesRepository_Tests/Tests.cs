@@ -48,32 +48,34 @@ namespace GamesRepository_Tests
         {
             var gameRepository = new GamesRepository.GamesRepository();
 
+            Assert.Equal(1, gameRepository.GetAll().Count());
+
             var game = new Game
             {
                 Title = "sdsf",
                 BuyDate = DateTime.Now,
                 Price = 0,
-                ShopId = 0,
-                //Shop = new Shop
-                //{
-                //    Id = 1,
-                //    Name = "ssf",
-                //    UserName = "sds"
-                //},
+               Shop = new Shop
+                {
+                    Id = 1,
+                    Name = "ssf",
+                    UserName = "sds"
+                },
                 Digital = 1,
-                ActivationServiceId = 0,
-                //ActivationServices = new ActivationServices
-                //{
-                //    Id = 1,
-                //    Name = "ssf",
-                //    UserName = "sds"
-                //},
+                ActivationServices = new ActivationServices
+                {
+                    Id = 1,
+                    Name = "ssf",
+                    UserName = "sds"
+                },
                 Platform = "PC"
             };
 
             gameRepository.Add(game);
 
-            Assert.Equal(2, gameRepository.GetAll().Count());
+            var actual = gameRepository.GetAll().ToList();
+
+            Assert.Equal(2, actual.Count);
 
             gameRepository.Remove(game);
 
