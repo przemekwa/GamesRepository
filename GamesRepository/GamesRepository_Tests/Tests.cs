@@ -55,12 +55,7 @@ namespace GamesRepository_Tests
                 Title = "sdsf",
                 BuyDate = DateTime.Now,
                 Price = 0,
-               Shop = new Shop
-                {
-                    Id = 1,
-                    Name = "ssf",
-                    UserName = "sds"
-                },
+                ShopId = 0,
                 Digital = 1,
                 ActivationServices = new ActivationServices
                 {

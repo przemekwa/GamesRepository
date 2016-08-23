@@ -39,6 +39,7 @@ namespace GamesExplorer.Models
             {
                 return new ActivationServices
                 {
+                    Id = -1,
                     Name = this.ActivationServices,
                 };
             }
@@ -55,6 +56,7 @@ namespace GamesExplorer.Models
             {
                 return new Shop
                 {
+                    Id = -1,
                     Name = this.ActivationServices,
                 };
             }
