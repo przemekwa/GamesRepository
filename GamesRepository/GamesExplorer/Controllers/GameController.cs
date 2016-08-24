@@ -25,19 +25,33 @@ namespace GamesExplorer.Controllers
 
         public ActionResult Games()
         {
-            var gameList = gamesApi.GetAll().Select(g=>new GameModel
+            var gameList = gamesApi.GetAll().OrderByDescending(g => g.BuyDate).ToList();
+
+            var dlcGames = gameList.Where(g => g.Dcl != null).OrderByDescending(g=>g.BuyDate).ToList();
+
+            var finalGameList = new List<Game>();
+
+            foreach (var game in gameList.Where(g=>g.Dcl == null))
+            {
+                finalGameList.Add(game);
+
+                if (dlcGames.Any(l => l.Dcl == game.Id))
+                {
+                    finalGameList.AddRange(dlcGames.Where(d => d.Dcl == game.Id));
+                }
+            }
+
+
+            return View(finalGameList.Select(g => new GameModel
             {
                 Title = g.Title,
                 Price = g.Price,
                 BuyDate = g.BuyDate,
-                Platform =  (Platform)Enum.Parse(typeof(Platform),g.Platform),
+                Platform = (Platform)Enum.Parse(typeof(Platform), g.Platform),
                 ActivationServices = g.ActivationServices.Name,
                 Shop = g.Shop.Name,
                 Digital = g.Digital == 1
-            }).OrderByDescending(g=>g.BuyDate);
-
-
-            return View(gameList);
+            }));
         }
 
         public ActionResult NewGame()
