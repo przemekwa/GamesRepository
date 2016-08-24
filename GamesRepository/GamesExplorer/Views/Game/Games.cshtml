@@ -5,6 +5,7 @@
 
 
 <h2>Games</h2>
+<h3>Total: @Model.Count()  Cost: @Model.Sum(g=>g.Price).ToString("C")</h3>
 
 <table class="table table-striped">
     <thead>
@@ -32,6 +33,8 @@
             <td>@m.ActivationServices</td>
             <td>@m.Shop</td>
             <td>@m.Digital</td>
+            <td>@m.Dlc</td>
+
 
         </tr>
     }

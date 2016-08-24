@@ -13,12 +13,22 @@ namespace GamesExplorer.Models
     {
         private readonly GamesRepository.GamesRepository gamesApi;
 
-        public IEnumerable<SelectListItem> AvailableGames { get; }
+        public List<SelectListItem> AvailableGames { get; }
 
         public GameModel()
         {
             gamesApi = new GamesRepository.GamesRepository();
-            AvailableGames = gamesApi.GetAll().Select(g => new SelectListItem {Text = g.Title, Value = g.Id.ToString()});
+            this.AvailableGames = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = string.Empty,
+                    Value = null
+                }
+
+            };
+
+            AvailableGames.AddRange(gamesApi.GetAll().Select(g => new SelectListItem {Text = g.Title, Value = g.Id.ToString()}));
         }
 
 

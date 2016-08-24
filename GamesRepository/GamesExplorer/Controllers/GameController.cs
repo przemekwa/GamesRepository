@@ -53,6 +53,7 @@ namespace GamesExplorer.Controllers
                 Digital = gameModel.Digital ?1:0,
                 Price = gameModel.Price,
                 Platform = gameModel.Platform.ToString(),
+                Dcl = string.IsNullOrEmpty(gameModel.Dlc) ? null : (int?) int.Parse(gameModel.Dlc)
             };
 
             this.gamesApi.Add(game);
