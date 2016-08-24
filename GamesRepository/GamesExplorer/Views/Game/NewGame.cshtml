@@ -24,7 +24,9 @@
     <p>Shop @Html.EditorFor(m => m.Shop)</p>
 
     <p>Platform @Html.EnumDropDownListFor(m => m.Platform)</p>
-  
+
+    <p>DLC for @Html.DropDownListFor(m=>m.Dlc,@Model.AvailableGames)  </p>
+
     <input type="submit"  value="Add"/>
 
 }

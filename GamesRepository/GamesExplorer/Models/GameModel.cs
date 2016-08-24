@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using GamesExplorer.Controllers;
 using GamesRepository.Dto;
 
@@ -12,9 +13,12 @@ namespace GamesExplorer.Models
     {
         private readonly GamesRepository.GamesRepository gamesApi;
 
+        public IEnumerable<SelectListItem> AvailableGames { get; }
+
         public GameModel()
         {
             gamesApi = new GamesRepository.GamesRepository();
+            AvailableGames = gamesApi.GetAll().Select(g => new SelectListItem {Text = g.Title, Value = g.Id.ToString()});
         }
 
 
@@ -23,6 +27,8 @@ namespace GamesExplorer.Models
         public bool Digital { get; set; }
         public string ActivationServices { get; set; }
         public string Shop { get; set; }
+
+        public string Dlc { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime BuyDate { get; set; }
