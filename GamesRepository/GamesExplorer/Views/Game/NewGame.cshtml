@@ -11,6 +11,8 @@
 
 @using (Html.BeginForm("Add", "Game"))
 {
+    @Html.ValidationSummary();
+
     <p>Title @Html.EditorFor(m => m.Title)</p>
 
     <p>BuyDate @Html.EditorFor(m => m.BuyDate)</p>

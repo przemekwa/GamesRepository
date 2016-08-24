@@ -34,7 +34,7 @@ namespace GamesExplorer.Controllers
                 ActivationServices = g.ActivationServices.Name,
                 Shop = g.Shop.Name,
                 Digital = g.Digital == 1
-            }).OrderBy(g=>g.BuyDate));
+            }).OrderByDescending(g=>g.BuyDate));
         }
 
         public ActionResult NewGame()
@@ -44,6 +44,16 @@ namespace GamesExplorer.Controllers
 
         public ActionResult Add(GameModel gameModel)
         {
+            if (this.gamesApi.GetAll().Any(g => g.Title.Contains(gameModel.Title ?? "")))
+            {
+                this.ModelState.AddModelError("Title", "Taka gra już instnieje w Twojej kolekcji. ");
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return View("NewGame", gameModel);
+            }
+
             var game = new Game
             {
                 Title = gameModel.Title,
@@ -56,7 +66,11 @@ namespace GamesExplorer.Controllers
                 Dcl = string.IsNullOrEmpty(gameModel.Dlc) ? null : (int?) int.Parse(gameModel.Dlc)
             };
 
-            this.gamesApi.Add(game);
+            //  this.gamesApi.Add(game);
+
+         
+
+            this.ModelState.Clear();
 
             return RedirectToAction("Games");
         }
