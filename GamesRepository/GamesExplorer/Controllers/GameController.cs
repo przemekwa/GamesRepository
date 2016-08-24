@@ -34,7 +34,7 @@ namespace GamesExplorer.Controllers
                 ActivationServices = g.ActivationServices.Name,
                 Shop = g.Shop.Name,
                 Digital = g.Digital == 1
-            }));
+            }).OrderBy(g=>g.BuyDate));
         }
 
         public ActionResult NewGame()

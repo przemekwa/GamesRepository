@@ -73,7 +73,7 @@ namespace GamesExplorer.Models
                 return new Shop
                 {
                     Id = -1,
-                    Name = this.ActivationServices,
+                    Name = this.Shop,
                 };
             }
 
