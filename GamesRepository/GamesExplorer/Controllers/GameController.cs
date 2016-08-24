@@ -25,7 +25,7 @@ namespace GamesExplorer.Controllers
 
         public ActionResult Games()
         {
-            return View(gamesApi.GetAll().Select(g=>new GameModel
+            var gameList = gamesApi.GetAll().Select(g=>new GameModel
             {
                 Title = g.Title,
                 Price = g.Price,
@@ -34,7 +34,10 @@ namespace GamesExplorer.Controllers
                 ActivationServices = g.ActivationServices.Name,
                 Shop = g.Shop.Name,
                 Digital = g.Digital == 1
-            }).OrderByDescending(g=>g.BuyDate));
+            }).OrderByDescending(g=>g.BuyDate);
+
+
+            return View(gameList);
         }
 
         public ActionResult NewGame()
@@ -66,7 +69,7 @@ namespace GamesExplorer.Controllers
                 Dcl = string.IsNullOrEmpty(gameModel.Dlc) ? null : (int?) int.Parse(gameModel.Dlc)
             };
 
-            //  this.gamesApi.Add(game);
+            this.gamesApi.Add(game);
 
          
 
