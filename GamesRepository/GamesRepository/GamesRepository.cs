@@ -7,8 +7,8 @@ using GamesRepository.Dto;
 
 namespace GamesRepository
 {
-   public class GamesRepository
-    {
+   public class GamesRepository : IGamesRepository
+   {
         private GamesRepositoryContext GamesRepositoryContext { get; set; }
 
         public GamesRepository()
