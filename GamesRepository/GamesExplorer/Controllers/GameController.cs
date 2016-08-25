@@ -50,7 +50,8 @@ namespace GamesExplorer.Controllers
                 Platform = (Platform)Enum.Parse(typeof(Platform), g.Platform),
                 ActivationServices = g.ActivationServices.Name,
                 Shop = g.Shop.Name,
-                Digital = g.Digital == 1
+                Digital = g.Digital == 1,
+                Dlc = g.Dcl.ToString() ?? null
             }));
         }
 
@@ -84,8 +85,6 @@ namespace GamesExplorer.Controllers
             };
 
             this.gamesApi.Add(game);
-
-         
 
             this.ModelState.Clear();
 

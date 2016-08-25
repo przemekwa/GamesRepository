@@ -25,15 +25,28 @@
     @for (int index = 0; index < @Model.ToList().Count; index++)
     {
         var m = @Model.ToList()[index];
+
+
+
         <tr>
             <td>@(index +1)</td>
-            <td>@m.Title</td>
+
+            @if (!string.IsNullOrEmpty(@m.Dlc))
+            {
+                <td><b>DLC -  @m.Title</b></td>
+            }
+            else
+            {
+                <td>@m.Title</td>
+            }
+
+            
             <td>@m.BuyDate</td>
             <td>@m.Price.ToString("C")</td>
             <td>@m.ActivationServices</td>
             <td>@m.Shop</td>
             <td>@m.Digital</td>
-            <td>@m.Dlc</td>
+          
 
 
         </tr>
