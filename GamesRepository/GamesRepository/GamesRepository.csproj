@@ -68,6 +68,7 @@
     <Compile Include="Dto\Shop.cs" />
     <Compile Include="GamesRepository.cs" />
     <Compile Include="GamesRepositoryContext.cs" />
+    <Compile Include="IGamesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,9 +5,11 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using GamesRepository;
 using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
+
 
 namespace GamesExplorer
 {
@@ -21,7 +23,15 @@ namespace GamesExplorer
 
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
 
-           
+            container.Register<IGamesRepository, GamesRepository.GamesRepository>(Lifestyle.Singleton);
+
+
+            container.RegisterMvcIntegratedFilterProvider();
+
+            container.Verify();
+
+            DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
+
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);

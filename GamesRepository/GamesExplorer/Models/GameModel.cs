@@ -5,19 +5,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GamesExplorer.Controllers;
+using GamesRepository;
 using GamesRepository.Dto;
 
 namespace GamesExplorer.Models
 {
     public class GameModel
     {
-        private readonly GamesRepository.GamesRepository gamesApi;
+        private readonly IGamesRepository gamesApi;
 
         public List<SelectListItem> AvailableGames { get; }
 
-        public GameModel()
+        public GameModel(IGamesRepository gamesRepository)
         {
-            gamesApi = new GamesRepository.GamesRepository();
+            gamesApi = gamesRepository;
+
             this.AvailableGames = new List<SelectListItem>
             {
                 new SelectListItem
