@@ -23,15 +23,13 @@ namespace GamesExplorer
 
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
 
-            container.Register<IGamesRepository, GamesRepository.GamesRepository>(Lifestyle.Singleton);
-
+            container.Register<IGamesRepository, GamesRepository.GamesRepository>(Lifestyle.Scoped);
 
             container.RegisterMvcIntegratedFilterProvider();
 
             container.Verify();
 
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
-
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);

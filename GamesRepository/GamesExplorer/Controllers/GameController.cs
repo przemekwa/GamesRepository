@@ -28,11 +28,11 @@ namespace GamesExplorer.Controllers
         {
             var gameList = gamesRepository.GetAll().OrderByDescending(g => g.BuyDate).ToList();
 
-            var dlcGames = gameList.Where(g => g.Dcl != null).OrderByDescending(g=>g.BuyDate).ToList();
+            var dlcGames = gameList.Where(g => g.Dcl != null).ToList();
 
             var finalGameList = new List<Game>();
 
-            foreach (var game in gameList.Where(g=>g.Dcl == null))
+            foreach (var game in gameList.Where(g => g.Dcl == null))
             {
                 finalGameList.Add(game);
 
