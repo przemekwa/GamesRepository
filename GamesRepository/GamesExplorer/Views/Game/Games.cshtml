@@ -4,55 +4,72 @@
     ViewBag.Title = "Games";
 }
 
+<div class="panel panel-primary" style="width: 300px; margin-top: 20px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Summary</h3>
+    </div>
+    <div class="panel-body">
+        <table style="width:100%">
+            <tr>
+                <td>Total games</td>
+                <td> <span class="badge badge-info">@Model.GameModels.Count</span> </td>
+            </tr>
+
+            <tr>
+                <td>Total cost</td>
+                <td><span class="badge badge-info">@Model.GameModels.Sum(g => g.Price).ToString("C")</span></td>
+            </tr>
+
+        </table>
+       
+    </div>
+</div>
+
+   
+
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Buy Date</th>
+                <th>Price (PLN)</th>
+                <th>Activation Services</th>
+                <th>Shop</th>
+                <th>Digital</th>
+            </tr>
+        </thead>
+        <tbody>
 
 
-
-<h2>Games</h2>
-<h3>Total: @Model.GameModels.Count  Cost: @Model.GameModels.Sum(g=>g.Price).ToString("C")</h3>
-
-<table id="example" class="display" cellspacing="0" width="100%">
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>Title</th>
-        <th>Buy Date</th>
-        <th>Price (PLN)</th>
-        <th>Activation Services</th>
-        <th>Shop</th> 
-        <th>Digital</th>
-    </tr>
-    </thead>
-    <tbody>
-
-
-    @for (int index = 0; index < @Model.GameModels.Count; index++)
-    {
-        var m = @Model.GameModels[index];
-
-
-
-        <tr>
-            <td>@(index +1)</td>
-
-            @if (!string.IsNullOrEmpty(@m.Dlc))
+            @for (int index = 0; index < @Model.GameModels.Count; index++)
             {
-                <td><b>DLC -  @m.Title</b></td>
+                var m = @Model.GameModels[index];
+
+
+
+                <tr>
+                    <td>@(index + 1)</td>
+
+                    @if (!string.IsNullOrEmpty(@m.Dlc))
+                    {
+                        <td><b>DLC -  @m.Title</b></td>
+                    }
+                    else
+                    {
+                        <td>@m.Title</td>
+                    }
+
+
+                    <td>@m.BuyDate.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture)</td>
+                    <td>@m.Price</td>
+                    <td>@m.ActivationServices</td>
+                    <td>@m.Shop</td>
+                    <td>@m.Digital</td>
+
+
+
+                </tr>
             }
-            else
-            {
-                <td>@m.Title</td>
-            }
-
-            
-            <td>@m.BuyDate.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture)</td>
-            <td>@m.Price</td>
-            <td>@m.ActivationServices</td>
-            <td>@m.Shop</td>
-            <td>@m.Digital</td>
-          
-
-
-        </tr>
-    }
-    </tbody>
-</table>
+        </tbody>
+    </table>
