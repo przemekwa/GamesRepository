@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game explorer</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+   
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -35,7 +39,15 @@
         </footer>
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+   
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function ()
+        {
+            $('#example').DataTable({
+                "lengthMenu": [[-1,10, 25,50], ["All",10, 25,50]]
+            });
+        });
+    </script>
 </body>
 </html>

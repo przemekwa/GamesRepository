@@ -4,10 +4,12 @@
 }
 
 
+
+
 <h2>Games</h2>
 <h3>Total: @Model.Count()  Cost: @Model.Sum(g=>g.Price).ToString("C")</h3>
 
-<table class="table table-striped">
+<table id="example" class="display" cellspacing="0" width="100%">
     <thead>
     <tr>
         <th>#</th>
