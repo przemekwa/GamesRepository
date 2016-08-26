@@ -43,7 +43,7 @@ namespace GamesExplorer.Controllers
             }
 
 
-            return View(finalGameList.Select(g => new GameModel(this.gamesRepository)
+            return View(finalGameList.Select(g => new GameModel(null)
             {
                 Title = g.Title,
                 Price = g.Price,
