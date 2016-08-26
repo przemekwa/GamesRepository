@@ -64,6 +64,16 @@ namespace GamesExplorer.Controllers
 
         public ActionResult NewGame()
         {
+            var newGameModel = new NewGameModel
+            {
+                AvailableGames = this.GetGamesForDlc()
+            };
+
+            return View(newGameModel);
+        }
+
+        private List<SelectListItem> GetGamesForDlc()
+        {
             var availableGames = new List<SelectListItem>
             {
                 new SelectListItem
@@ -71,43 +81,38 @@ namespace GamesExplorer.Controllers
                     Text = string.Empty,
                     Value = null
                 }
-
             };
 
-            availableGames.AddRange(this.gamesRepository.GetAll().Select(g => new SelectListItem { Text = g.Title, Value = g.Id.ToString() }));
-
-            var newGameModel = new NewGameModel
-            {
-                AvailableGames = availableGames
-            };
-
-
-            return View(newGameModel);
+            availableGames.AddRange(
+                this.gamesRepository.GetAll().Select(g => new SelectListItem {Text = g.Title, Value = g.Id.ToString()}));
+            return availableGames;
         }
 
-        public ActionResult Add(NewGameModel gameModel)
+        public ActionResult Add(NewGameModel newGameModel)
         {
           
-            if (this.gamesRepository.GetAll().Any(g => g.Title.Contains(gameModel.Title ?? "")))
+            if (this.gamesRepository.GetAll().Any(g => g.Title.Contains(newGameModel.Title ?? "")))
             {
                 this.ModelState.AddModelError("Title", "Taka gra już instnieje w Twojej kolekcji. ");
             }
 
             if (!this.ModelState.IsValid)
             {
-                return View("NewGame", gameModel);
+                newGameModel.AvailableGames = this.GetGamesForDlc();
+
+                return View("NewGame", newGameModel);
             }
 
             var game = new Game
             {
-                Title = gameModel.Title,
-                BuyDate = gameModel.BuyDate,
-                Shop = this.GetShops(gameModel.Shop),
-                ActivationServices = this.GetActivationServices(gameModel.ActivationServices),
-                Digital = gameModel.Digital ? 1 : 0,
-                Price = gameModel.Price,
-                Platform = gameModel.Platform.ToString(),
-                Dcl = string.IsNullOrEmpty(gameModel.Dlc) ? null : (int?)int.Parse(gameModel.Dlc)
+                Title = newGameModel.Title,
+                BuyDate = newGameModel.BuyDate,
+                Shop = this.GetShops(newGameModel.Shop),
+                ActivationServices = this.GetActivationServices(newGameModel.ActivationServices),
+                Digital = newGameModel.Digital ? 1 : 0,
+                Price = newGameModel.Price,
+                Platform = newGameModel.Platform.ToString(),
+                Dcl = string.IsNullOrEmpty(newGameModel.Dlc) ? null : (int?)int.Parse(newGameModel.Dlc)
             };
 
             if (game.Shop.Id != -1)
