@@ -1,4 +1,5 @@
-﻿@model IEnumerable<GamesExplorer.Models.GameModel>
+﻿@using System.Globalization
+@model IEnumerable<GamesExplorer.Models.GameModel>
 @{
     ViewBag.Title = "Games";
 }
@@ -15,7 +16,7 @@
         <th>#</th>
         <th>Title</th>
         <th>Buy Date</th>
-        <th>Price</th>
+        <th>Price (PLN)</th>
         <th>Activation Services</th>
         <th>Shop</th> 
         <th>Digital</th>
@@ -43,8 +44,8 @@
             }
 
             
-            <td>@m.BuyDate</td>
-            <td>@m.Price.ToString("C")</td>
+            <td>@m.BuyDate.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture)</td>
+            <td>@m.Price</td>
             <td>@m.ActivationServices</td>
             <td>@m.Shop</td>
             <td>@m.Digital</td>

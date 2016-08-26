@@ -45,7 +45,13 @@
         $(document).ready(function ()
         {
             $('#example').DataTable({
-                "lengthMenu": [[-1,10, 25,50], ["All",10, 25,50]]
+                "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]],
+                "ordering": false,
+                "createdRow": function (row, data, index) {
+                    if (data[3].replace(/[,]/g, '') * 1 > 10000) {
+                        $('td', row).eq(5).addClass('highlight');
+                    }
+                }
             });
         });
     </script>
