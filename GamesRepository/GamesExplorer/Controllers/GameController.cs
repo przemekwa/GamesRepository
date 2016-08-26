@@ -43,28 +43,51 @@ namespace GamesExplorer.Controllers
             }
 
 
-            return View(finalGameList.Select(g => new GameModel(null)
+            var model = new GameModelxxx(gamesRepository)
             {
-                Title = g.Title,
-                Price = g.Price,
-                BuyDate = g.BuyDate,
-                Platform = (Platform)Enum.Parse(typeof(Platform), g.Platform),
-                ActivationServices = g.ActivationServices.Name,
-                Shop = g.Shop.Name,
-                Digital = g.Digital == 1,
-                Dlc = g.Dcl.ToString() ?? null
-            }));
+                GameModels = finalGameList.Select(g => new GameModel
+                {
+                    Title = g.Title,
+                    Price = g.Price,
+                    BuyDate = g.BuyDate,
+                    Platform = (Platform) Enum.Parse(typeof(Platform), g.Platform),
+                    ActivationServices = g.ActivationServices.Name,
+                    Shop = g.Shop.Name,
+                    Digital = g.Digital == 1,
+                    Dlc = g.Dcl.ToString() ?? null
+                }).ToList()
+            };
+
+
+            return View(model);
         }
 
         public ActionResult NewGame()
         {
-            return View(new GameModel(this.gamesRepository));
+            var availableGames = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = string.Empty,
+                    Value = null
+                }
+
+            };
+
+            availableGames.AddRange(this.gamesRepository.GetAll().Select(g => new SelectListItem { Text = g.Title, Value = g.Id.ToString() }));
+
+            var newGameModel = new NewGameModel
+            {
+                AvailableGames = availableGames
+            };
+
+
+            return View(newGameModel);
         }
 
-        public ActionResult Add(GameModel gameModel)
+        public ActionResult Add(NewGameModel gameModel)
         {
-            gameModel.GamesRepository = this.gamesRepository;
-
+          
             if (this.gamesRepository.GetAll().Any(g => g.Title.Contains(gameModel.Title ?? "")))
             {
                 this.ModelState.AddModelError("Title", "Taka gra już instnieje w Twojej kolekcji. ");
@@ -79,12 +102,12 @@ namespace GamesExplorer.Controllers
             {
                 Title = gameModel.Title,
                 BuyDate = gameModel.BuyDate,
-                Shop = gameModel.GetShops(),
-                ActivationServices = gameModel.GetActivationServices(),
-                Digital = gameModel.Digital ?1:0,
+                Shop = this.GetShops(gameModel.Shop),
+                ActivationServices = this.GetActivationServices(gameModel.ActivationServices),
+                Digital = gameModel.Digital ? 1 : 0,
                 Price = gameModel.Price,
                 Platform = gameModel.Platform.ToString(),
-                Dcl = string.IsNullOrEmpty(gameModel.Dlc) ? null : (int?) int.Parse(gameModel.Dlc)
+                Dcl = string.IsNullOrEmpty(gameModel.Dlc) ? null : (int?)int.Parse(gameModel.Dlc)
             };
 
             if (game.Shop.Id != -1)
@@ -104,6 +127,41 @@ namespace GamesExplorer.Controllers
             this.ModelState.Clear();
 
             return RedirectToAction("Games");
+        }
+
+        public ActivationServices GetActivationServices(string name)
+        {
+            var activationServices =
+                this.gamesRepository.GetActivationServices().SingleOrDefault(d => d.Name == name);
+
+            if (activationServices == null)
+            {
+                return new ActivationServices
+                {
+                    Id = -1,
+                    Name = name,
+                };
+            }
+
+
+            return activationServices;
+        }
+
+        public Shop GetShops(string name)
+        {
+            var shop =
+                this.gamesRepository.GetShops().SingleOrDefault(d => d.Name == name);
+
+            if (shop == null)
+            {
+                return new Shop
+                {
+                    Id = -1,
+                    Name = name,
+                };
+            }
+
+            return shop;
         }
     }
 }

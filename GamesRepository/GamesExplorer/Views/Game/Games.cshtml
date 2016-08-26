@@ -1,5 +1,5 @@
 ﻿@using System.Globalization
-@model IEnumerable<GamesExplorer.Models.GameModel>
+@model GamesExplorer.Models.GameModelxxx
 @{
     ViewBag.Title = "Games";
 }
@@ -8,7 +8,7 @@
 
 
 <h2>Games</h2>
-<h3>Total: @Model.Count()  Cost: @Model.Sum(g=>g.Price).ToString("C")</h3>
+<h3>Total: @Model.GameModels.Count  Cost: @Model.GameModels.Sum(g=>g.Price).ToString("C")</h3>
 
 <table id="example" class="display" cellspacing="0" width="100%">
     <thead>
@@ -25,9 +25,9 @@
     <tbody>
 
 
-    @for (int index = 0; index < @Model.ToList().Count; index++)
+    @for (int index = 0; index < @Model.GameModels.Count; index++)
     {
-        var m = @Model.ToList()[index];
+        var m = @Model.GameModels[index];
 
 
 
