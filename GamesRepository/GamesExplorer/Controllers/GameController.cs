@@ -43,7 +43,7 @@ namespace GamesExplorer.Controllers
             }
 
 
-            var model = new GameModelxxx(gamesRepository)
+            var model = new GamesModel(gamesRepository)
             {
                 GameModels = finalGameList.Select(g => new GameModel
                 {

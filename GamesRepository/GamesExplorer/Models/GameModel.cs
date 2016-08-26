@@ -34,6 +34,7 @@ namespace GamesExplorer.Models
         public Platform Platform { get; set; }
 
         [Required]
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
      }
 }

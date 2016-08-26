@@ -10,20 +10,18 @@ using GamesRepository.Dto;
 
 namespace GamesExplorer.Models
 {
-    public class GameModelxxx
+    public class GamesModel
     {
         public IGamesRepository GamesRepository { get; set; }
 
-       
-
         public List<GameModel> GameModels { get; set; }
 
-        public GameModelxxx()
+        public GamesModel()
         {
                 
         }
 
-        public GameModelxxx(IGamesRepository gamesRepository)
+        public GamesModel(IGamesRepository gamesRepository)
         {
             this.GamesRepository = gamesRepository;
 
