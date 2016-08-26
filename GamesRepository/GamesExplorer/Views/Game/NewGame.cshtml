@@ -5,31 +5,40 @@
 }
 
 
-<h2>NewGame</h2>
 
 
 
-@using (Html.BeginForm("Add", "Game"))
-{
-    @Html.ValidationSummary();
+<div class="panel panel-primary" style="width: 50%; margin-top: 20px">
+    <div class="panel-heading">
+        <h3 class="panel-title">Add new game to collection</h3>
+    </div>
+    <div class="panel-body">
 
-    <p>Title @Html.EditorFor(m => m.Title)</p>
 
-    <p>BuyDate @Html.EditorFor(m => m.BuyDate)</p>
 
-    <p>Price @Html.EditorFor(m => m.Price)</p>
 
-    <p>ActivationServices @Html.EditorFor(m => m.ActivationServices)</p>
+        @using (Html.BeginForm("Add", "Game"))
+        {
+          @Html.ValidationSummary()
 
-    <p>Digital @Html.EditorFor(m => m.Digital)</p>
+            <p>Title @Html.EditorFor(m => m.Title)</p>
 
-    <p>Shop @Html.EditorFor(m => m.Shop)</p>
+            <p>BuyDate @Html.EditorFor(m => m.BuyDate)</p>
 
-    <p>Platform @Html.EnumDropDownListFor(m => m.Platform)</p>
+            <p>Price @Html.EditorFor(m => m.Price)</p>
 
-    <p>DLC for @Html.DropDownListFor(m=>m.Dlc,@Model.AvailableGames)  </p>
+            <p>ActivationServices @Html.EditorFor(m => m.ActivationServices)</p>
 
-    <input type="submit"  value="Add"/>
+            <p>Digital @Html.EditorFor(m => m.Digital)</p>
 
-}
+            <p>Shop @Html.EditorFor(m => m.Shop)</p>
 
+            <p>Platform @Html.EnumDropDownListFor(m => m.Platform)</p>
+
+            <p>DLC for @Html.DropDownListFor(m => m.Dlc, @Model.AvailableGames)  </p>
+
+            <input type="submit" value="Add" />
+
+        }
+    </div>
+</div>
