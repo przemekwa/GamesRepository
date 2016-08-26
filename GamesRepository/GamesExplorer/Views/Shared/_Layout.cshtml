@@ -10,6 +10,15 @@
     <script src="~/Scripts/jquery-1.12.4.min.js"></script>
     <script src="~/Scripts/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script>
+        $(document).ready(function ()
+        {
+            $('#example').DataTable({
+                "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]],
+                "ordering": false
+            });
+        });
+    </script>
    
 </head>
 <body>
@@ -41,19 +50,6 @@
 
    
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function ()
-        {
-            $('#example').DataTable({
-                "lengthMenu": [[-1, 10, 25, 50], ["All", 10, 25, 50]],
-                "ordering": false,
-                "createdRow": function (row, data, index) {
-                    if (data[3].replace(/[,]/g, '') * 1 > 10000) {
-                        $('td', row).eq(5).addClass('highlight');
-                    }
-                }
-            });
-        });
-    </script>
+   
 </body>
 </html>

@@ -12,13 +12,18 @@ namespace GamesExplorer.Models
 {
     public class GameModel
     {
-        private readonly IGamesRepository gamesApi;
+        public IGamesRepository GamesRepository { get; set; }
 
         public List<SelectListItem> AvailableGames { get; }
 
+        public GameModel()
+        {
+                
+        }
+
         public GameModel(IGamesRepository gamesRepository)
         {
-            gamesApi = gamesRepository;
+            this.GamesRepository = gamesRepository;
 
             this.AvailableGames = new List<SelectListItem>
             {
@@ -30,7 +35,7 @@ namespace GamesExplorer.Models
 
             };
 
-            AvailableGames.AddRange(gamesApi.GetAll().Select(g => new SelectListItem {Text = g.Title, Value = g.Id.ToString()}));
+            AvailableGames.AddRange(GamesRepository.GetAll().Select(g => new SelectListItem {Text = g.Title, Value = g.Id.ToString()}));
         }
 
 
@@ -64,7 +69,7 @@ namespace GamesExplorer.Models
         public ActivationServices GetActivationServices()
         {
             var activationServices =
-                this.gamesApi.GetActivationServices().SingleOrDefault(d => d.Name == this.ActivationServices);
+                this.GamesRepository.GetActivationServices().SingleOrDefault(d => d.Name == this.ActivationServices);
 
             if (activationServices == null)
             {
@@ -74,6 +79,7 @@ namespace GamesExplorer.Models
                     Name = this.ActivationServices,
                 };
             }
+         
 
             return activationServices;
         }
@@ -81,7 +87,7 @@ namespace GamesExplorer.Models
         public Shop GetShops()
         {
             var shop =
-                this.gamesApi.GetShops().SingleOrDefault(d => d.Name == this.Shop);
+                this.GamesRepository.GetShops().SingleOrDefault(d => d.Name == this.Shop);
 
             if (shop == null)
             {

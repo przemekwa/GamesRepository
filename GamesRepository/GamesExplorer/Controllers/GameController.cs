@@ -63,6 +63,8 @@ namespace GamesExplorer.Controllers
 
         public ActionResult Add(GameModel gameModel)
         {
+            gameModel.GamesRepository = this.gamesRepository;
+
             if (this.gamesRepository.GetAll().Any(g => g.Title.Contains(gameModel.Title ?? "")))
             {
                 this.ModelState.AddModelError("Title", "Taka gra już instnieje w Twojej kolekcji. ");
@@ -84,6 +86,18 @@ namespace GamesExplorer.Controllers
                 Platform = gameModel.Platform.ToString(),
                 Dcl = string.IsNullOrEmpty(gameModel.Dlc) ? null : (int?) int.Parse(gameModel.Dlc)
             };
+
+            if (game.Shop.Id != -1)
+            {
+                game.ShopId = game.Shop.Id;
+                game.Shop = null;
+            }
+
+            if (game.ActivationServices.Id != -1)
+            {
+                game.ActivationServiceId = game.ActivationServices.Id;
+                game.ActivationServices = null;
+            }
 
             this.gamesRepository.Add(game);
 

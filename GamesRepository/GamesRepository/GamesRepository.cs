@@ -33,15 +33,7 @@ namespace GamesRepository
 
         public void Add(Game game)
         {
-            if (game.Shop.Id != -1)
-            {
-                game.Shop = null;
-            }
-
-            if (game.ActivationServices.Id != -1)
-            {
-                game.ActivationServices = null;
-            }
+            
 
             this.GamesRepositoryContext.Games.Add(game);
 
