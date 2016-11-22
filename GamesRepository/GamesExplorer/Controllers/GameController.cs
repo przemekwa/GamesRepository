@@ -90,7 +90,6 @@ namespace GamesExplorer.Controllers
 
         public ActionResult Add(NewGameModel newGameModel)
         {
-          
             if (this.gamesRepository.GetAll().Any(g => g.Title.Contains(newGameModel.Title ?? "")))
             {
                 this.ModelState.AddModelError("Title", "Taka gra już instnieje w Twojej kolekcji. ");
