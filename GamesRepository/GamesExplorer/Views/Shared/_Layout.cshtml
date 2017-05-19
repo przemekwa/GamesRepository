@@ -6,6 +6,9 @@
     <title>Game explorer</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
     
     <script src="~/Scripts/jquery-1.12.4.min.js"></script>
@@ -14,6 +17,21 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
     <script>
+
+        function GetDateNow() {
+            var d = new Date();
+
+            var month = d.getMonth() + 1;
+            var day = d.getDate();
+
+
+            return (day < 10 ? '0' : '') + day + '.' + + (month < 10 ? '0' : '') + month + '.' + d.getFullYear()
+
+          
+       
+        }
+
+
         $(document).ready(function ()
         {
             $('#example').DataTable({
@@ -25,6 +43,11 @@
                 format: "dd.mm.yyyy",
                 language: "pl"
             });
+            $('#BuyDate').val(GetDateNow)
+
+
+
+        
 
         });
     </script>
