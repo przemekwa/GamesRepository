@@ -17,20 +17,13 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
     <script>
-
         function GetDateNow() {
             var d = new Date();
-
             var month = d.getMonth() + 1;
             var day = d.getDate();
 
-
             return (day < 10 ? '0' : '') + day + '.' + + (month < 10 ? '0' : '') + month + '.' + d.getFullYear()
-
-          
-       
         }
-
 
         $(document).ready(function ()
         {
@@ -44,11 +37,6 @@
                 language: "pl"
             });
             $('#BuyDate').val(GetDateNow)
-
-
-
-        
-
         });
     </script>
    
